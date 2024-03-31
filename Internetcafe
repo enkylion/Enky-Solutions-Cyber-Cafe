@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enky Solutions Internet Cafe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="enky_logo.png" alt="Enky Solutions Logo">
+    </div>
+    <h1>Enky Solutions Internet Cafe</h1>
+    <div class="contact">
+      <p>WhatsApp: <a href="https://wa.me/254768063078">+254768063078</a></p>
+    </div>
+  </header>
+  
+  <main>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="service">
+        <h3>Typesetting</h3>
+        <p>Any publication per page - 100 shs</p>
+        <button onclick="addToCart('Typesetting', 100)">Order</button>
+      </div>
+      <!-- Other services here -->
+    </section>
+
+    <section id="cart">
+      <h2>Shopping Cart</h2>
+      <ul id="cart-items">
+        <!-- Selected items will be added here -->
+      </ul>
+      <p>Total: <span id="total">0</span> shs</p>
+      <button onclick="checkout()">Checkout</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Enky Solutions Internet Cafe</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.contact {
+  margin-top: 10px;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+.service {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+footer {
+  background-color: #34495e;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+let cart = [];
+let total = 0;
+
+function addToCart(service, price) {
+  cart.push({ service: service, price: price });
+  total += price;
+  updateCart();
+}
+
+function updateCart() {
+  let cartItems = document.getElementById('cart-items');
+  cartItems.innerHTML = '';
+  cart.forEach(item => {
+    let li = document.createElement('li');
+    li.textContent = `${item.service} - ${item.price} shs`;
+    cartItems.appendChild(li);
+  });
+  document.getElementById('total').textContent = total;
+}
+
+function checkout() {
+  // You can implement the checkout process here, such as sending order details to the backend
+  console.log("Checkout clicked. Total amount: " + total + " shs");
+}
